@@ -27,19 +27,19 @@ print(arquivo.serial_medidor)  # Saída: 00000000
 
 ### Atributos
 
-##### `caminho_arquivo -> string´
+##### `caminho_arquivo -> string`
 String com o caminho do arquivo.
 
-##### `dado_bruto -> string´
+##### `dado_bruto -> string`
 Dados do arquivo FK7 sem nenhum tratamento.
 
-##### `hex_blocos -> list´
+##### `hex_blocos -> list`
 Dados do arquivo FK7 já convertidos em hexadecimais e separados em blocos de 256 octetos.
 
-##### `qtd_blocos -> int´
+##### `qtd_blocos -> int`
 Quantidade de blocos (de 256 octetos) encontrados no arquivo FK7.
 
-##### `bloco_presente -> dict´
+##### `bloco_presente -> dict`
 Verifica a presença de blocos específicos. O tipo do bloco é determinando pelo primeiro octeto, podendo ser uma das opções a seguir:
 
 '20', '21', '22', '51', '23', '24', '41', '44', '42', '43', '45', '46', '25', '26', '27', '52', '28', '80', '14'
@@ -50,10 +50,10 @@ Este atributo vem em forma de dicionário, onde as chaves são os octetos e os v
 print(arquivo.bloco_presente['20']) # Saída: True
 ```
 
-##### `serial_medidor -> int´
+##### `serial_medidor -> int`
 Número serial do medidor.
 
 
-##### `data_hora_atual -> datetime´
+##### `data_hora_atual -> datetime`
 Data e hora encontrada no arquivo FK7.
 
