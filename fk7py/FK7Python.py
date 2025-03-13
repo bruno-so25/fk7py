@@ -2,10 +2,9 @@
 Classe principal que lê o arquivo e obtém os dados.
 """
 
-#%%
 from datetime import datetime
 
-class FK7File:
+class FK7:
     """
     Classe para manipulação de arquivos FK7.
     """
@@ -24,11 +23,12 @@ class FK7File:
         self.data_hora_atual = None # Data e hora atual no medidor
         
         # Lê o arquivo assim que a instância da classe é criada
-        self.le_arquivo()
+        self.__le_arquivo()
 
-    def le_arquivo(self):
+    def __le_arquivo(self):
         """
-        Lê o conteúdo do arquivo FK7.
+        Função interna.
+        Lê o conteúdo do arquivo FK7 e obtém os atributos.
         """
         try:
             with open(self.caminho_arquivo, 'rb') as f:
@@ -113,19 +113,3 @@ class FK7File:
                 raise Exception("Foram encontrados registros de data e hora distintos no arquivo. Verifique o arquivo.")
         else:
             raise Exception("Não foi encontrado nenhum registro de data e hora no arquivo.")
-#%%
-# Trecho preparado para testar o código
-if __name__ == "__main__":
-    # Caminho para um arquivo de execmplo no mesmo diretório
-    caminho = './fk7example'
-
-    # Instancia a classe com o arquivo exemplo
-    arq = FK7File(caminho)
-
-    # Imprime os atributos (com exceção aos dados brutos e os blocos hexadecimais)
-    for k, v in arq.__dict__.items():
-        if k != 'dado_bruto' and k != 'hex_blocos':
-            print(k, v)
-
-    # [...]
-# %%
