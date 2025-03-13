@@ -23,9 +23,9 @@ class FK7:
         self.data_hora_atual = None # Data e hora atual no medidor
         
         # Lê o arquivo assim que a instância da classe é criada
-        self.__le_arquivo()
+        self.__lerArquivo()
 
-    def __le_arquivo(self):
+    def __lerArquivo(self):
         """
         Função interna.
         Lê o conteúdo do arquivo FK7 e obtém os atributos.
@@ -48,17 +48,18 @@ class FK7:
                     self.bloco_presente[bloco[0]] = True
 
             # Busca o número do medidor:
-            self.serial_medidor = self.obtem_serial_medidor()
+            self.serial_medidor = self.__obtemSerialMedidor()
             # Encontra data e hora atual no arquivo:
-            self.data_hora_atual = self.obtem_data_hora()
+            self.data_hora_atual = self.__obtemDataHora()
             
         except FileNotFoundError:
             raise FileNotFoundError(f"Arquivo não encontrado: {self.caminho_arquivo}")
         except Exception as e:
             raise IOError(f"Erro ao ler o arquivo: {e}")
 
-    def obtem_serial_medidor(self):
+    def __obtemSerialMedidor(self):
         """
+        Função interna.
         Tenta encontrar o número do medidor através dos blocos lidos.
         """
         serial_encontrado = []
@@ -83,8 +84,9 @@ class FK7:
         else:
             raise Exception("Não foi encontrado nenhum número de medidor no arquivo.")
 
-    def obtem_data_hora(self):
+    def __obtemDataHora(self):
         """
+        Função interna.
         Obtém dados de data e hora.
         """
         data_hora_encontrado = []
