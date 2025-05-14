@@ -70,6 +70,8 @@ class FK7:
             self.serial_medidor = self.__obtemSerialMedidor()
             # Encontra data e hora atual no arquivo:
             self.data_hora_atual = self.__obtemDataHora()
+            # Gera o nome padrão do arquivo segundo a norma
+            self.nome_arquivo = self.__obtemNomeArquivo()
             
         except FileNotFoundError:
             raise FileNotFoundError(f"Arquivo não encontrado: {self.caminho_arquivo}")
@@ -136,3 +138,36 @@ class FK7:
                 return data_hora_encontrado[0]
         else:
             raise Exception("Não foi encontrado nenhum registro de data e hora no arquivo.")
+
+    def __obtemNomeArquivo(self):
+        # Extrair os cinco últimos dígitos do número de série do medidor
+        nnnnn = str(self.serial_medidor)[-5:]
+        
+        # Extrair os componentes de data e hora
+        segundo = self.data_hora_atual.second
+        minuto = self.data_hora_atual.minute
+        hora = self.data_hora_atual.hour
+        dia = self.data_hora_atual.day
+        mes = self.data_hora_atual.month
+        
+        # Cálculo do total de segundos
+        total_segundos = segundo + (minuto * 60) + (hora * 3600) + (dia * 24 * 3600) + (mes * 31 * 24 * 3600)
+        
+        # Função para converter para base 20
+        def para_base_20(numero):
+            caracteres_base_20 = "ABCDEFGHIJKLMNOPQRST"
+            resultado = ""
+            while numero > 0:
+                resultado = caracteres_base_20[numero % 20] + resultado
+                numero //= 20
+            return resultado
+        
+        # Converter o total de segundos para base 20
+        base_20 = para_base_20(total_segundos)
+        
+        # Obter os 5 primeiros caracteres ou completar com zeros
+        base_20 = base_20[-5:].rjust(5, 'A')
+        
+        # Formar o nome do arquivo
+        nome_arquivo = f"{nnnnn}${base_20[0:2]}.{base_20[2:5]}"
+        return nome_arquivo
