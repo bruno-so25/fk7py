@@ -3,18 +3,32 @@ Classe principal que lê o arquivo e obtém os dados.
 """
 
 from datetime import datetime
+import io
 
 class FK7:
     """
     Classe para manipulação de arquivos FK7.
     """
-    def __init__(self, caminho_arquivo: str):
+    def __init__(self, arquivo: str):
         """
         Inicializa a instância da classe com o caminho do arquivo FK7.
-        :param caminho_arquivo: Caminho do arquivo FK7.
+        :param arquivo: Caminho ou bytes do arquivo FK7.
         """
+        
+        # Verifica se parâmetro passado é caminho ou bytes
+        if isinstance(arquivo, str):
+            # É um caminho para arquivo
+            self.caminho_arquivo = arquivo
+            self.bytes = None
+        elif isinstance(arquivo, bytes):
+            # É um conteúdo binário
+            self.caminho_arquivo = None
+            self.bytes = arquivo
+        else:
+            raise TypeError("A variável 'arquivo' deve ser uma string (caminho) ou bytes.")
+        
         # Atributos
-        self.caminho_arquivo = caminho_arquivo
+
         self.dado_bruto = None # Dados brutos
         self.hex_blocos = [] # Lista contendo os blocos com dados hexadecimais
         self.qtd_blocos = None # Quantidade de blocos encontrados no arquivo
@@ -31,7 +45,12 @@ class FK7:
         Lê o conteúdo do arquivo FK7 e obtém os atributos.
         """
         try:
-            with open(self.caminho_arquivo, 'rb') as f:
+            
+            if self.caminho_arquivo:
+                with open(self.caminho_arquivo, 'rb') as f:
+                    dados = f.read()
+            elif self.bytes:
+                f = io.BytesIO(self.bytes)
                 dados = f.read()
 
             # Dados brutos:
@@ -112,6 +131,8 @@ class FK7:
             if all(item == data_hora_encontrado[0] for item in data_hora_encontrado):
                 return data_hora_encontrado[0]
             else:
-                raise Exception("Foram encontrados registros de data e hora distintos no arquivo. Verifique o arquivo.")
+                #raise Exception("Foram encontrados registros de data e hora distintos no arquivo. Verifique o arquivo.")
+                print("Foram encontrados registros de data e hora distintos no arquivo. Verifique o arquivo.")
+                return data_hora_encontrado[0]
         else:
             raise Exception("Não foi encontrado nenhum registro de data e hora no arquivo.")
