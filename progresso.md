@@ -4,6 +4,7 @@
 
 ### 3.1.2.1.1 Leitura de parâmetros - Comando com resposta simples
 |Octeto|Status              |Comentário                              |
+|------|--------------------|----------------------------------------|
 |1     |Interpretado ✅      |                                        |
 |2     |Interpretado ✅      |                                        |
 |3     |Interpretado ✅      |                                        |
