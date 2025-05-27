@@ -8,8 +8,6 @@ Os scripts deste projeto interpretam o arquivo FK7 de acordo com o que é aprese
 
 ## 🖥️ QuickStart
 
-Copie a pasta "fk7py" para o seu ambiente virtual.
-
 ```python
 
 from fk7py import FK7
@@ -23,7 +21,14 @@ print(arquivo.serial_medidor)  # Saída: 00000000
 
 ```
 
-## 🌟 Componentes
+## 🧩 Interpretação dos Dados
+
+Veja o progresso da interpretação dos dados no arquivo:
+
+👉 [Tabela de Dados Interpretados](progresso.md)
+
+
+## 🌟 Componentes Básicos
 
 ### Atributos
 
