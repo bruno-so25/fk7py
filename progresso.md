@@ -3,6 +3,10 @@
 ## As tabelas a seguir mostram quais octetos já foram interpretados ou não
 
 ### 3.1.2.1.1 Leitura de parâmetros - Comando com resposta simples
+
+<details>
+<summary>Clique para expandir a tabela</summary>
+
 |Octeto|Status              |Comentário                              |
 |------|--------------------|----------------------------------------|
 |1     |Interpretado ✅      |                                        |
@@ -261,3 +265,4 @@
 |254   |Não interpretado ❌  |                                        |
 |255   |Não interpretado ❌  |                                        |
 |256   |Não interpretado ❌  |                                        |
+</details>
