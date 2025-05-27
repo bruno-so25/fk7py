@@ -30,6 +30,5 @@ fk7py = "fk7py.cli:main"
 packages = ["fk7py"]
 
 [tool.setuptools_scm]
-version_file = "fk7py/__init__.py"
 version_scheme = "guess-next-dev"
 local_scheme = "no-local-version"
