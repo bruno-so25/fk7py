@@ -1,5 +1,5 @@
 # fk7py
-Conjunto de scripts python para leitura e interpretação de arquivos FK7.
+Conjunto de scripts python para leitura e interpretação de arquivos FK7 de acordo com a norma ABNT NBR 14522.
 
 ## 🎯 Objetivo
 
@@ -7,6 +7,10 @@ Este projeto tem como objetivo facilitar a leitura e interpretação de arquivos
 Os scripts deste projeto interpretam o arquivo FK7 de acordo com o que é apresentado na norma ABNT NBR 14522.
 
 ## 🖥️ QuickStart
+
+```python
+pip install fk7py
+```
 
 ```python
 
@@ -25,7 +29,7 @@ print(arquivo.serial_medidor)  # Saída: 00000000
 
 Veja o progresso da interpretação dos dados no arquivo:
 
-👉 [Tabela de Dados Interpretados](progresso.md)
+👉 [Tabela de Dados Interpretados](https://github.com/bruno-so25/fk7py/blob/main/progresso.md)
 
 
 ## 🌟 Componentes Básicos
@@ -40,6 +44,10 @@ Dados do arquivo FK7 sem nenhum tratamento.
 
 ##### `hex_blocos -> list`
 Dados do arquivo FK7 já convertidos em hexadecimais e separados em blocos de 256 octetos.
+
+##### `enum_blocos -> list`
+Lista de blocosdo arquivo FK7 já convertidos em hexadecimais.
+Cada bloco com sua posição enumerada de 1 até 256.
 
 ##### `qtd_blocos -> int`
 Quantidade de blocos (de 256 octetos) encontrados no arquivo FK7.
@@ -61,4 +69,21 @@ Número serial do medidor.
 
 ##### `data_hora_atual -> datetime`
 Data e hora encontrada no arquivo FK7.
+
+### Métodos
+
+#### `Interpretação de bloco`
+
+```python
+lerBlocos(bloco)
+```
+
+Recebe o bloco em formato de dicionário. Este argumento deve ser um item do atributo 'enum_blocos'.
+
+Exemplo de uso:
+```python
+arquivo = FK7('C:/caminho/do/arquivo')
+
+dados = arquivo.lerBloco(arquivo.enum_blocos[0])
+```
 

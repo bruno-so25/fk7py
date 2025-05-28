@@ -21,7 +21,7 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/bruno-so25/fk7py"
+"Github" = "https://github.com/bruno-so25/fk7py"
 
 [project.scripts]
 fk7py = "fk7py.cli:main"

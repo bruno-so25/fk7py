@@ -7,3 +7,5 @@ __pycache__/
 # Ignora pastas
 arquivo_exemplo/
 dist/
+build/
+fk7py.egg-info/
